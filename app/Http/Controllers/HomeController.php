@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $t_sales = t_sales::with('m_customer')->get();
+        $t_sales = t_sales::latest('created_at')->with('m_customer')->get();
         return view('pages.dashboard', compact('t_sales'));
     }
     public function formInput()
