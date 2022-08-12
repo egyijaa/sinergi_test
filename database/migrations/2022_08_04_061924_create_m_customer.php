@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('m_customer', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('kode', 10)->unique();
             $table->string('nama', 100);
             $table->string('telp', 20)->unique();

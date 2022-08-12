@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('t_sales_det', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignId('sales_id')->references('id')->on('t_sales')->onDelete('cascade');
             $table->foreignId('barang_id')->references('id')->on('m_barang')->onDelete('cascade');
             $table->decimal('harga_bandrol', 20, 2);

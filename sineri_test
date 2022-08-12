@@ -1,0 +1,810 @@
+--
+-- tstmitrQL database dump
+--
+
+-- Dumped from database version 14.4
+-- Dumped by pg_dump version 14.4
+
+-- Started on 2022-08-12 15:22:05
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 215 (class 1259 OID 20151)
+-- Name: failed_jobs; Type: TABLE; Schema: public; Owner: tstmitr
+--
+
+CREATE TABLE public.failed_jobs (
+    id bigint NOT NULL,
+    uuid character varying(255) NOT NULL,
+    connection text NOT NULL,
+    queue text NOT NULL,
+    payload text NOT NULL,
+    exception text NOT NULL,
+    failed_at timestamp(0) without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE public.failed_jobs OWNER TO tstmitr;
+
+--
+-- TOC entry 214 (class 1259 OID 20150)
+-- Name: failed_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: tstmitr
+--
+
+CREATE SEQUENCE public.failed_jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.failed_jobs_id_seq OWNER TO tstmitr;
+
+--
+-- TOC entry 3408 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: failed_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tstmitr
+--
+
+ALTER SEQUENCE public.failed_jobs_id_seq OWNED BY public.failed_jobs.id;
+
+
+--
+-- TOC entry 219 (class 1259 OID 20175)
+-- Name: m_barang; Type: TABLE; Schema: public; Owner: tstmitr
+--
+
+CREATE TABLE public.m_barang (
+    id bigint NOT NULL,
+    kode character varying(10) NOT NULL,
+    nama character varying(100) NOT NULL,
+    harga numeric(13,2) NOT NULL,
+    kuantiti integer NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE public.m_barang OWNER TO tstmitr;
+
+--
+-- TOC entry 218 (class 1259 OID 20174)
+-- Name: m_barang_id_seq; Type: SEQUENCE; Schema: public; Owner: tstmitr
+--
+
+CREATE SEQUENCE public.m_barang_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.m_barang_id_seq OWNER TO tstmitr;
+
+--
+-- TOC entry 3409 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: m_barang_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tstmitr
+--
+
+ALTER SEQUENCE public.m_barang_id_seq OWNED BY public.m_barang.id;
+
+
+--
+-- TOC entry 221 (class 1259 OID 20184)
+-- Name: m_customer; Type: TABLE; Schema: public; Owner: tstmitr
+--
+
+CREATE TABLE public.m_customer (
+    id bigint NOT NULL,
+    kode character varying(10) NOT NULL,
+    nama character varying(100) NOT NULL,
+    telp character varying(20) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE public.m_customer OWNER TO tstmitr;
+
+--
+-- TOC entry 220 (class 1259 OID 20183)
+-- Name: m_customer_id_seq; Type: SEQUENCE; Schema: public; Owner: tstmitr
+--
+
+CREATE SEQUENCE public.m_customer_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.m_customer_id_seq OWNER TO tstmitr;
+
+--
+-- TOC entry 3410 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: m_customer_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tstmitr
+--
+
+ALTER SEQUENCE public.m_customer_id_seq OWNED BY public.m_customer.id;
+
+
+--
+-- TOC entry 209 (class 1259 OID 18120)
+-- Name: migrations; Type: TABLE; Schema: public; Owner: tstmitr
+--
+
+CREATE TABLE public.migrations (
+    id integer NOT NULL,
+    migration character varying(255) NOT NULL,
+    batch integer NOT NULL
+);
+
+
+ALTER TABLE public.migrations OWNER TO tstmitr;
+
+--
+-- TOC entry 210 (class 1259 OID 18123)
+-- Name: migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: tstmitr
+--
+
+CREATE SEQUENCE public.migrations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.migrations_id_seq OWNER TO tstmitr;
+
+--
+-- TOC entry 3411 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tstmitr
+--
+
+ALTER SEQUENCE public.migrations_id_seq OWNED BY public.migrations.id;
+
+
+--
+-- TOC entry 213 (class 1259 OID 20144)
+-- Name: password_resets; Type: TABLE; Schema: public; Owner: tstmitr
+--
+
+CREATE TABLE public.password_resets (
+    email character varying(255) NOT NULL,
+    token character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE public.password_resets OWNER TO tstmitr;
+
+--
+-- TOC entry 217 (class 1259 OID 20163)
+-- Name: personal_access_tokens; Type: TABLE; Schema: public; Owner: tstmitr
+--
+
+CREATE TABLE public.personal_access_tokens (
+    id bigint NOT NULL,
+    tokenable_type character varying(255) NOT NULL,
+    tokenable_id bigint NOT NULL,
+    name character varying(255) NOT NULL,
+    token character varying(64) NOT NULL,
+    abilities text,
+    last_used_at timestamp(0) without time zone,
+    expires_at timestamp(0) without time zone,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE public.personal_access_tokens OWNER TO tstmitr;
+
+--
+-- TOC entry 216 (class 1259 OID 20162)
+-- Name: personal_access_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: tstmitr
+--
+
+CREATE SEQUENCE public.personal_access_tokens_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.personal_access_tokens_id_seq OWNER TO tstmitr;
+
+--
+-- TOC entry 3412 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: personal_access_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tstmitr
+--
+
+ALTER SEQUENCE public.personal_access_tokens_id_seq OWNED BY public.personal_access_tokens.id;
+
+
+--
+-- TOC entry 223 (class 1259 OID 20195)
+-- Name: t_sales; Type: TABLE; Schema: public; Owner: tstmitr
+--
+
+CREATE TABLE public.t_sales (
+    id bigint NOT NULL,
+    kode character varying(15) NOT NULL,
+    tgl timestamp(0) without time zone NOT NULL,
+    jumlah_barang integer,
+    cust_id bigint NOT NULL,
+    subtotal numeric(20,2) NOT NULL,
+    diskon numeric(20,2),
+    ongkir numeric(20,2),
+    total_bayar numeric(20,2) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE public.t_sales OWNER TO tstmitr;
+
+--
+-- TOC entry 225 (class 1259 OID 20209)
+-- Name: t_sales_det; Type: TABLE; Schema: public; Owner: tstmitr
+--
+
+CREATE TABLE public.t_sales_det (
+    id bigint NOT NULL,
+    sales_id bigint NOT NULL,
+    barang_id bigint NOT NULL,
+    harga_bandrol numeric(20,2) NOT NULL,
+    qty integer NOT NULL,
+    diskon_pct numeric(20,2),
+    diskon_nilai numeric(20,2),
+    harga_diskon numeric(20,2),
+    total numeric(20,2) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE public.t_sales_det OWNER TO tstmitr;
+
+--
+-- TOC entry 224 (class 1259 OID 20208)
+-- Name: t_sales_det_id_seq; Type: SEQUENCE; Schema: public; Owner: tstmitr
+--
+
+CREATE SEQUENCE public.t_sales_det_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.t_sales_det_id_seq OWNER TO tstmitr;
+
+--
+-- TOC entry 3413 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: t_sales_det_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tstmitr
+--
+
+ALTER SEQUENCE public.t_sales_det_id_seq OWNED BY public.t_sales_det.id;
+
+
+--
+-- TOC entry 222 (class 1259 OID 20194)
+-- Name: t_sales_id_seq; Type: SEQUENCE; Schema: public; Owner: tstmitr
+--
+
+CREATE SEQUENCE public.t_sales_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.t_sales_id_seq OWNER TO tstmitr;
+
+--
+-- TOC entry 3414 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: t_sales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tstmitr
+--
+
+ALTER SEQUENCE public.t_sales_id_seq OWNED BY public.t_sales.id;
+
+
+--
+-- TOC entry 212 (class 1259 OID 20134)
+-- Name: users; Type: TABLE; Schema: public; Owner: tstmitr
+--
+
+CREATE TABLE public.users (
+    id bigint NOT NULL,
+    name character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    email_verified_at timestamp(0) without time zone,
+    password character varying(255) NOT NULL,
+    remember_token character varying(100),
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE public.users OWNER TO tstmitr;
+
+--
+-- TOC entry 211 (class 1259 OID 20133)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: tstmitr
+--
+
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO tstmitr;
+
+--
+-- TOC entry 3415 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tstmitr
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- TOC entry 3205 (class 2604 OID 20154)
+-- Name: failed_jobs id; Type: DEFAULT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.failed_jobs ALTER COLUMN id SET DEFAULT nextval('public.failed_jobs_id_seq'::regclass);
+
+
+--
+-- TOC entry 3208 (class 2604 OID 20178)
+-- Name: m_barang id; Type: DEFAULT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.m_barang ALTER COLUMN id SET DEFAULT nextval('public.m_barang_id_seq'::regclass);
+
+
+--
+-- TOC entry 3209 (class 2604 OID 20187)
+-- Name: m_customer id; Type: DEFAULT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.m_customer ALTER COLUMN id SET DEFAULT nextval('public.m_customer_id_seq'::regclass);
+
+
+--
+-- TOC entry 3203 (class 2604 OID 18151)
+-- Name: migrations id; Type: DEFAULT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.migrations_id_seq'::regclass);
+
+
+--
+-- TOC entry 3207 (class 2604 OID 20166)
+-- Name: personal_access_tokens id; Type: DEFAULT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.personal_access_tokens ALTER COLUMN id SET DEFAULT nextval('public.personal_access_tokens_id_seq'::regclass);
+
+
+--
+-- TOC entry 3210 (class 2604 OID 20198)
+-- Name: t_sales id; Type: DEFAULT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.t_sales ALTER COLUMN id SET DEFAULT nextval('public.t_sales_id_seq'::regclass);
+
+
+--
+-- TOC entry 3211 (class 2604 OID 20212)
+-- Name: t_sales_det id; Type: DEFAULT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.t_sales_det ALTER COLUMN id SET DEFAULT nextval('public.t_sales_det_id_seq'::regclass);
+
+
+--
+-- TOC entry 3204 (class 2604 OID 20137)
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- TOC entry 3392 (class 0 OID 20151)
+-- Dependencies: 215
+-- Data for Name: failed_jobs; Type: TABLE DATA; Schema: public; Owner: tstmitr
+--
+
+COPY public.failed_jobs (id, uuid, connection, queue, payload, exception, failed_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3396 (class 0 OID 20175)
+-- Dependencies: 219
+-- Data for Name: m_barang; Type: TABLE DATA; Schema: public; Owner: tstmitr
+--
+
+COPY public.m_barang (id, kode, nama, harga, kuantiti, created_at, updated_at) FROM stdin;
+1	F402	Barang A	612389.00	16	2022-08-12 07:50:54	2022-08-12 07:50:54
+2	J946	Barang B	755886.00	9	2022-08-12 07:50:54	2022-08-12 07:50:54
+3	D979	Barang C	398153.00	27	2022-08-12 07:50:54	2022-08-12 07:50:54
+4	F306	Barang D	561864.00	50	2022-08-12 07:50:54	2022-08-12 07:50:54
+5	B045	Barang E	617494.00	3	2022-08-12 07:50:54	2022-08-12 07:50:54
+\.
+
+
+--
+-- TOC entry 3398 (class 0 OID 20184)
+-- Dependencies: 221
+-- Data for Name: m_customer; Type: TABLE DATA; Schema: public; Owner: tstmitr
+--
+
+COPY public.m_customer (id, kode, nama, telp, created_at, updated_at) FROM stdin;
+1	D3T1	Egy Ihza Madhani	0895606068325	2022-08-12 07:50:54	2022-08-12 07:50:54
+2	R7P7	Mitra Sinergi Teknoindo	081323139138	2022-08-12 07:50:54	2022-08-12 07:50:54
+\.
+
+
+--
+-- TOC entry 3386 (class 0 OID 18120)
+-- Dependencies: 209
+-- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: tstmitr
+--
+
+COPY public.migrations (id, migration, batch) FROM stdin;
+333	2014_10_12_000000_create_users_table	1
+334	2014_10_12_100000_create_password_resets_table	1
+335	2019_08_19_000000_create_failed_jobs_table	1
+336	2019_12_14_000001_create_personal_access_tokens_table	1
+337	2022_08_04_061838_create_m_barang	1
+338	2022_08_04_061924_create_m_customer	1
+339	2022_08_04_062011_create_t_sales	1
+340	2022_08_04_062204_create_t_sales_det	1
+\.
+
+
+--
+-- TOC entry 3390 (class 0 OID 20144)
+-- Dependencies: 213
+-- Data for Name: password_resets; Type: TABLE DATA; Schema: public; Owner: tstmitr
+--
+
+COPY public.password_resets (email, token, created_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3394 (class 0 OID 20163)
+-- Dependencies: 217
+-- Data for Name: personal_access_tokens; Type: TABLE DATA; Schema: public; Owner: tstmitr
+--
+
+COPY public.personal_access_tokens (id, tokenable_type, tokenable_id, name, token, abilities, last_used_at, expires_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3400 (class 0 OID 20195)
+-- Dependencies: 223
+-- Data for Name: t_sales; Type: TABLE DATA; Schema: public; Owner: tstmitr
+--
+
+COPY public.t_sales (id, kode, tgl, jumlah_barang, cust_id, subtotal, diskon, ongkir, total_bayar, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3402 (class 0 OID 20209)
+-- Dependencies: 225
+-- Data for Name: t_sales_det; Type: TABLE DATA; Schema: public; Owner: tstmitr
+--
+
+COPY public.t_sales_det (id, sales_id, barang_id, harga_bandrol, qty, diskon_pct, diskon_nilai, harga_diskon, total, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3389 (class 0 OID 20134)
+-- Dependencies: 212
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: tstmitr
+--
+
+COPY public.users (id, name, email, email_verified_at, password, remember_token, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3416 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: failed_jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tstmitr
+--
+
+SELECT pg_catalog.setval('public.failed_jobs_id_seq', 1, false);
+
+
+--
+-- TOC entry 3417 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: m_barang_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tstmitr
+--
+
+SELECT pg_catalog.setval('public.m_barang_id_seq', 5, true);
+
+
+--
+-- TOC entry 3418 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: m_customer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tstmitr
+--
+
+SELECT pg_catalog.setval('public.m_customer_id_seq', 2, true);
+
+
+--
+-- TOC entry 3419 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tstmitr
+--
+
+SELECT pg_catalog.setval('public.migrations_id_seq', 340, true);
+
+
+--
+-- TOC entry 3420 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: personal_access_tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tstmitr
+--
+
+SELECT pg_catalog.setval('public.personal_access_tokens_id_seq', 1, false);
+
+
+--
+-- TOC entry 3421 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: t_sales_det_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tstmitr
+--
+
+SELECT pg_catalog.setval('public.t_sales_det_id_seq', 1, false);
+
+
+--
+-- TOC entry 3422 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: t_sales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tstmitr
+--
+
+SELECT pg_catalog.setval('public.t_sales_id_seq', 1, false);
+
+
+--
+-- TOC entry 3423 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tstmitr
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 1, false);
+
+
+--
+-- TOC entry 3220 (class 2606 OID 20159)
+-- Name: failed_jobs failed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.failed_jobs
+    ADD CONSTRAINT failed_jobs_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3222 (class 2606 OID 20161)
+-- Name: failed_jobs failed_jobs_uuid_unique; Type: CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.failed_jobs
+    ADD CONSTRAINT failed_jobs_uuid_unique UNIQUE (uuid);
+
+
+--
+-- TOC entry 3229 (class 2606 OID 20182)
+-- Name: m_barang m_barang_kode_unique; Type: CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.m_barang
+    ADD CONSTRAINT m_barang_kode_unique UNIQUE (kode);
+
+
+--
+-- TOC entry 3231 (class 2606 OID 20180)
+-- Name: m_barang m_barang_pkey; Type: CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.m_barang
+    ADD CONSTRAINT m_barang_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3233 (class 2606 OID 20191)
+-- Name: m_customer m_customer_kode_unique; Type: CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.m_customer
+    ADD CONSTRAINT m_customer_kode_unique UNIQUE (kode);
+
+
+--
+-- TOC entry 3235 (class 2606 OID 20189)
+-- Name: m_customer m_customer_pkey; Type: CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.m_customer
+    ADD CONSTRAINT m_customer_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3237 (class 2606 OID 20193)
+-- Name: m_customer m_customer_telp_unique; Type: CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.m_customer
+    ADD CONSTRAINT m_customer_telp_unique UNIQUE (telp);
+
+
+--
+-- TOC entry 3213 (class 2606 OID 18170)
+-- Name: migrations migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.migrations
+    ADD CONSTRAINT migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3224 (class 2606 OID 20170)
+-- Name: personal_access_tokens personal_access_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.personal_access_tokens
+    ADD CONSTRAINT personal_access_tokens_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3226 (class 2606 OID 20173)
+-- Name: personal_access_tokens personal_access_tokens_token_unique; Type: CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.personal_access_tokens
+    ADD CONSTRAINT personal_access_tokens_token_unique UNIQUE (token);
+
+
+--
+-- TOC entry 3243 (class 2606 OID 20214)
+-- Name: t_sales_det t_sales_det_pkey; Type: CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.t_sales_det
+    ADD CONSTRAINT t_sales_det_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3239 (class 2606 OID 20207)
+-- Name: t_sales t_sales_kode_unique; Type: CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.t_sales
+    ADD CONSTRAINT t_sales_kode_unique UNIQUE (kode);
+
+
+--
+-- TOC entry 3241 (class 2606 OID 20200)
+-- Name: t_sales t_sales_pkey; Type: CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.t_sales
+    ADD CONSTRAINT t_sales_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3215 (class 2606 OID 20143)
+-- Name: users users_email_unique; Type: CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_email_unique UNIQUE (email);
+
+
+--
+-- TOC entry 3217 (class 2606 OID 20141)
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3218 (class 1259 OID 20149)
+-- Name: password_resets_email_index; Type: INDEX; Schema: public; Owner: tstmitr
+--
+
+CREATE INDEX password_resets_email_index ON public.password_resets USING btree (email);
+
+
+--
+-- TOC entry 3227 (class 1259 OID 20171)
+-- Name: personal_access_tokens_tokenable_type_tokenable_id_index; Type: INDEX; Schema: public; Owner: tstmitr
+--
+
+CREATE INDEX personal_access_tokens_tokenable_type_tokenable_id_index ON public.personal_access_tokens USING btree (tokenable_type, tokenable_id);
+
+
+--
+-- TOC entry 3244 (class 2606 OID 20201)
+-- Name: t_sales t_sales_cust_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.t_sales
+    ADD CONSTRAINT t_sales_cust_id_foreign FOREIGN KEY (cust_id) REFERENCES public.m_customer(id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3246 (class 2606 OID 20220)
+-- Name: t_sales_det t_sales_det_barang_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.t_sales_det
+    ADD CONSTRAINT t_sales_det_barang_id_foreign FOREIGN KEY (barang_id) REFERENCES public.m_barang(id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3245 (class 2606 OID 20215)
+-- Name: t_sales_det t_sales_det_sales_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: tstmitr
+--
+
+ALTER TABLE ONLY public.t_sales_det
+    ADD CONSTRAINT t_sales_det_sales_id_foreign FOREIGN KEY (sales_id) REFERENCES public.t_sales(id) ON DELETE CASCADE;
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO tstmitr_ijaa06;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO tstmitr;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO tstmitr_ijaa06;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO tstmitr;
+-- Completed on 2022-08-12 15:22:06
+
+--
+-- tstmitrQL database dump complete
+--
+

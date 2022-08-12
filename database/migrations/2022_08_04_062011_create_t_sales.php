@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('t_sales', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('kode', 15)->unique();
             $table->dateTime('tgl');
             $table->integer('jumlah_barang')->nullable();
