@@ -255,7 +255,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"> Rp. </span>
                                                 </div>
-                                                <input type="text" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="val-harga" name="harga"
                                                     placeholder="Enter a price..">
                                                 @error('val-harga')
@@ -273,7 +273,7 @@
                                                             class="fa fa-database"
                                                             aria-hidden="true"></i> </span>
                                                 </div>
-                                                <input type="text" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="val-kuantiti" name="kuantiti"
                                                     placeholder="Enter a kuantiti..">
                                                 @error('val-kuantiti')

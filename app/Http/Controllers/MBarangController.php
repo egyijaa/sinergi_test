@@ -21,6 +21,10 @@ class MBarangController extends Controller
         $m_barang = m_barang::all();
         return view('pages.barang.index', compact('m_barang'));
     }
+    public function index2()
+    {
+        return m_barang::orderBy('id', 'ASC')->get();
+    }
 
     /**
      * Show the form for creating a new resource.
